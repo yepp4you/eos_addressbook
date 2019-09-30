@@ -7,7 +7,7 @@
 
 namespace eosio {
 
-void addressbook::upsert(name user, std::string first_name, std::string last_name, std::string street, std::string city) {
+void addressbook::upsert(name user, const std::string& first_name, const std::string& last_name, const std::string& street, const std::string& city) {
    require_auth(user);
 
    address_index addresses(get_self(), get_first_receiver().value);

@@ -38,6 +38,8 @@ async function deployContract(account, contractPath, authorizations, options) {
                 .catch((err) => {
                     if (err.error && err.error.code === 3160008) { //Contract is already running this version of code
                         return err.code;
+                    } else {
+                        throw err;
                     }
                 });
             const retAbi = await setabi(account, wrappedEosApi.getAbiHex(abi), authorizations, options);

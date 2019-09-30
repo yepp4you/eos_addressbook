@@ -34,16 +34,16 @@
 ## 실행
     1 npm 모듈 설치 : package 설치는 npm 대신에 yarn을 사용함.
         _> yarn
-    2 contract deploy : 한번 deploy를 하게 되면, contract파일이 변경된 경우에만 deploy가 가능함.
+    2 buyram bytes : contract를 deploy하기 전에 충분히 RAM을 구매 해 야 함.
+        _> npm run startj -- -c buyram -b 119200
+    3 contract deploy : 한번 deploy를 하게 되면, contract파일이 변경된 경우에만 deploy가 가능함.
         _> npm run startj -- -c deploy
-
-    3 주소록 정보, 업데이트 또는 추가
+    4 주소록 정보, 업데이트 또는 추가
         _> npm run startj -- -c upserts
-
-    4 주소록 정보 삭제
-        _> npm run startj -- -c erases
-
-    5 주소록 정보 요청 : junglenet에서는 값을 불러 오지 못하고 있음
+    5 주소록 정보 삭제
+        _> npm run startj -- -c erase -n <계정명>
+        _> npm run startj -- -c erase -n testuser111f
+    6 주소록 정보 요청 : junglenet에서는 값을 불러 오지 못하고 있음
         _> npm run startj -- -c address -n <계정명>
         _> npm run startj -- -c address -n testuser111a
 

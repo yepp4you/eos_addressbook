@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(eosio_addressbook)
+project(address_contracts)
 
 set(VERSION_MAJOR 1)
-set(VERSION_MINOR 0)
+set(VERSION_MINOR 7)
 set(VERSION_PATCH 0)
+#set(VERSION_SUFFIX develop)
 
 if (VERSION_SUFFIX)
    set(VERSION_FULL "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}-${VERSION_SUFFIX}")
@@ -16,7 +17,7 @@ include(ExternalProject)
 
 find_package(eosio.cdt)
 
-message(STATUS "Building addressbook contracts v${VERSION_FULL}")
+message(STATUS "Building eosio.contracts v${VERSION_FULL}")
 
 set(EOSIO_CDT_VERSION_MIN "1.6")
 set(EOSIO_CDT_VERSION_SOFT_MAX "1.6")
@@ -38,7 +39,7 @@ else() # INVALID OR MISMATCH
 endif(VERSION_OUTPUT STREQUAL "MATCH")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-   set(TEST_BUILD_TYPE "Debug")
+   set(TEST_BUILD_TYPE "Release")
    set(CMAKE_BUILD_TYPE "Release")
 else()
    set(TEST_BUILD_TYPE ${CMAKE_BUILD_TYPE})
@@ -70,8 +71,12 @@ elseif (UNIX)
 endif()
 set(SECP256K1_ROOT "/usr/local")
 
+
+
 string(REPLACE ";" "|" TEST_FRAMEWORK_PATH "${CMAKE_FRAMEWORK_PATH}")
 string(REPLACE ";" "|" TEST_MODULE_PATH "${CMAKE_MODULE_PATH}")
+
+
 
 ExternalProject_Add(
   contracts_unit_tests
