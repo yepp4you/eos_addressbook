@@ -15,9 +15,9 @@
         - Create Account 링크 클릭
             - 생성 할 Account Name을 입력,  제약조건) a-z,1-5 are allowed only. Length 12
             - 1번 단계에서 만들어진, Owner Public Key, Active Public Key를 각각 copy & paste
-            - Create  클릭
+            - Create 버튼 클릭
 
-    3 EOS 코인 충전 : 테스트 넷에서는 테스트에 사용 할 EOS 코인을 충전 받을 수 있음. (한번 충전한 IP에서는, 24시간 후 재충전 가능)
+    3 EOS 코인 충전 : 테스트 넷에서는 테스트에 사용 할 EOS 코인을 충전 받을 수 있음. (한번 충전한 IP는 24시간후에 재충전 가능)
         - Faucet 링크 클릭
             - 2번 단계에서 생성한 계정 이름 입력
             - Send Coins 버튼 클릭

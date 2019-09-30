@@ -14,9 +14,26 @@
         _> nvm alias default v12.10.0
         _> nvm use default
 
+    3 yarn 설치
+        _> npm install -g yarn
+
+## 폴더 구조
+    1 index.js : 프로그램의 시작 코드
+    2 config
+        1 jungle.json : jungle testnet의 접속 정보
+    3 contract
+        1 addressbook : addressbook contract를 빌드의 결과 파일 (abi, wasm)
+    4 files
+        1 jungle : jungle testnet에서 사용할 계정 및 주소록 정보
+            - account.json : jungle testnet에 생성한 계정의 private, and public key
+            - upsert.json : 업데이트 혹은 추가할 주소록 정보
+            - erase.json : 지울 주소록 정보
+    4 external_apis
+        - eos_api : eos chain과 rpc통신을 하기 위한 코드
+
 ## 실행
     1 npm 모듈 설치
-        _> npm install
+        _> yarn
     2 contract deploy
         _> npm run startj -- -c deploy
 
@@ -30,18 +47,5 @@
         _> npm run startj -- -c address -n <계정명>
         _> npm run startj -- -c address -n testuser111a
 
-## 폴더 구조
-    1 index.js : 프로그램의 시작 코드
 
-    2 config
-        1 jungle.json : jungle testnet의 접속 정보
-    3 contract
-        1 addressbook : addressbook contract를 빌드의 결과 파일 (abi, wasm)
-    4 files
-        1 jungle : jungle testnet에서 사용할 계정 및 주소록 정보
-            - account.json : jungle testnet에 생성한 계정의 private, and public key
-            - upsert.json : 업데이트 혹은 추가할 주소록 정보
-            - erase.json : 지울 주소록 정보
-    4 external_apis
-        - eos_api : eos chain과 rpc통신을 하기 위한 코드
 
