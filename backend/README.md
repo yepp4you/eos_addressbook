@@ -14,7 +14,7 @@
         _> nvm alias default v12.10.0
         _> nvm use default
 
-    3 yarn 설치
+    3 yarn 설치 : npm으로 yarn을 설치하고, npm모듈들을 yarn을 사용해서 관리함
         _> npm install -g yarn
 
 ## 폴더 구조
@@ -32,9 +32,9 @@
         - eos_api : eos chain과 rpc통신을 하기 위한 코드
 
 ## 실행
-    1 npm 모듈 설치
+    1 npm 모듈 설치 : package 설치는 npm 대신에 yarn을 사용함.
         _> yarn
-    2 contract deploy
+    2 contract deploy : 한번 deploy를 하게 되면, contract파일이 변경된 경우에만 deploy가 가능함.
         _> npm run startj -- -c deploy
 
     3 주소록 정보, 업데이트 또는 추가

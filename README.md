@@ -31,3 +31,6 @@
     1 brew 설치 (Mac OS X용 패키지 관리 프로그램, 개발에 필요한 프로그램들을 쉽게 설치, 업데이트, 삭제등을 할 수 있게 해줌)
         _> /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         - 참조 사이트 : https://brew.sh/index_ko
+
+## 코드 받기
+    _> git clone https://github.com/yepp4you/eos_addressbook.git
