@@ -47,5 +47,10 @@
         _> npm run startj -- -c address -n <계정명>
         _> npm run startj -- -c address -n testuser111a
 
+## BlockChain에서 확인 방법
+    1  아래의 사이트에서 계정명을 입력
+        https://jungle.bloks.io/
+    2 위의 사이트에서 계정에 대한 table정보를 확인해 볼 수 있음.
+        https://jungle.bloks.io/contract?tab=Tables&account=testaddr111a&scope=testaddr111a&limit=100&table=people
 
 
