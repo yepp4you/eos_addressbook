@@ -62,7 +62,7 @@
                 "first_name": 이름
                 "last_name" : 성
                 "street": 주소
-                "city" : 시
+                "city" : 도시
             }
             res : trx
             ex)
@@ -93,11 +93,11 @@
             method : PUT
             req :
             {
-                "user" :
-                "first_name":
-                "last_name" :
-                "street":
-                "city" :
+                "user" : key로 사용되기 때문에, a-z.12345의 만 사용이가능하고 최대 12자까지만 가능
+                "first_name": 이름
+                "last_name" : 성
+                "street": 주소
+                "city" : 도시
             }
             res : trx
             ex)
