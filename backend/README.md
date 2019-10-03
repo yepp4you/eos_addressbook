@@ -46,7 +46,9 @@
             _> yarn
         2 buyram bytes : contract를 deploy하기 전에 충분히 RAM을 구매 해 야 함.
             _> npm run toolsj -- -c buyram -b 119200
-        3 contract deploy : 한번 deploy를 하게 되면, contract파일이 변경된 경우에만, deploy가 가능함.
+        3 stake : contract를 deploy하기 전에 충분히 RAM을 구매 해 야 함.
+            _> npm run toolsj -- -c stake -cpu 2 --net
+        4 contract deploy : 한번 deploy를 하게 되면, contract파일이 변경된 경우에만, deploy가 가능함.
             _> npm run toolsj -- -c deploy
 
     ### 웹서버 실행
@@ -112,6 +114,9 @@
                 trx
             ex)
                 _> curl -X DELETE -H "Content-Type: application/json" http://localhost:3000/api/1/users/alice/address
+
+## unit test (cpu가 부족하면, 테스트중에 에러 발생)
+    _> npm run test
 
 ## BlockChain에서 확인 방법
     1  아래의 사이트에서 계정명을 입력

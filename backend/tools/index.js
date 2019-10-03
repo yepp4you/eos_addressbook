@@ -31,6 +31,10 @@ async function start() {
     if (cmd === 'buyram') {
         const bytes = argv.b;
         return buyramBytes(bytes);
+    } else if (cmd === 'stake') {
+        const cpu = argv.cpu || 0;
+        const net = argv.net || 0;
+        return delegatebw(cpu, net);
     } else if (cmd === 'deploy') {
         return deploy();
     } else if (cmd === 'upserts') {
@@ -54,6 +58,17 @@ async function buyramBytes(bytes) {
     const ram = {payer : contractAccount, receiver : contractAccount, bytes : parseInt(bytes)};
     const options = {keyProvider : account.pvt};
     return Promise.resolve(eosApi.buyrambytes(ram, authorization, options));
+}
+
+async function delegatebw(cpu, net) {
+    console.log('delegate(stake)');
+
+    const account = _.find(accounts, {name : contractAccount});
+    const authorization = eosApi.createAuthorization(contractAccount, 'active');
+    const delegate = {from : account.name, receiver : ownerAccount, stake_net_quantity : `${cpu}.0000 EOS`, stake_cpu_quantity : `${net}.0000 EOS`, transfer : false};
+    const options = {keyProvider : account.pvt};
+
+    return Promise.resolve(eosApi.delegatebw(delegate, authorization, options));
 }
 
 async function deploy() {
