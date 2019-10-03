@@ -46,8 +46,8 @@
             _> yarn
         2 buyram bytes : contract를 deploy하기 전에 충분히 RAM을 구매 해 야 함.
             _> npm run toolsj -- -c buyram -b 119200
-        3 stake : contract를 deploy하기 전에 충분히 RAM을 구매 해 야 함.
-            _> npm run toolsj -- -c stake -cpu 2 --net
+        3 stake : cpu와 net을 stake (단위는 EOS)
+            _> npm run toolsj -- -c stake -cpu 1 --net 0
         4 contract deploy : 한번 deploy를 하게 되면, contract파일이 변경된 경우에만, deploy가 가능함.
             _> npm run toolsj -- -c deploy
 
