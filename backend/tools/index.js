@@ -6,12 +6,14 @@ let Promise = require('bluebird'),
     parseArgs = require('minimist'),
     path = require('path'),
     config = require('config'),
+    contract = require('contract'),
     eosApi = require('external_apis/eos_api'),
-    files = require('./files'),
-    AddressbookAction = require('./addressbook_action');
+    files = require('files'),
+    Addressbook = require('libs/eos/addressbook');
 
 const accounts = files.accounts;
 const contractAccount = config.eosNode.contractAccount;
+const ownerAccount = config.eosNode.ownerAccount;
 
 Promise.resolve(start())
     .then(() => {
@@ -58,7 +60,7 @@ async function deploy() {
     console.log('deploy addressbook contract');
 
     const account = _.find(accounts, {name : contractAccount});
-    const contractPath = path.join(__dirname, 'contract', 'addressbook');
+    const contractPath = path.join(contract.path, 'addressbook');
     const authorization = eosApi.createAuthorization(contractAccount, 'active');
     const options = {keyProvider : account.pvt};
 
@@ -75,10 +77,12 @@ async function deploy() {
 
 function upsertAddressBooks() {
     console.log('update or insert addressbooks');
+    const owner = _.find(accounts, {name : contractAccount});
     return Promise.each(files.upserts, (address) => {
         let account = _.find(accounts, {name : address.user});
         console.log(`update or insert addressbooks -- ${account.name}`);
-        return Promise.resolve(AddressbookAction.upsert(address, account.pvt, account.name))
+        address.owner = owner.name;
+        return Promise.resolve(Addressbook.upsert(address, owner.pvt, owner.name))
             .delay(200)
             .then((trx) => {
                 console.log(util.inspect(trx, {depth: 5}));
@@ -93,9 +97,9 @@ function upsertAddressBooks() {
 
 function eraseAddressBook(name) {
     console.log('erase addressbook');
-    let account = _.find(accounts, {name : name});
-    console.log(`erase -- ${account.name}`);
-    return Promise.resolve(AddressbookAction.erase({user : account.name}, account.pvt, account.name))
+    const owner = _.find(accounts, {name : contractAccount});
+    console.log(`erase -- ${name}`);
+    return Promise.resolve(Addressbook.erase({owner : owner.name, user : name}, owner.pvt, owner.name))
         .delay(200)
         .then((trx) => {
             return trx;
@@ -106,13 +110,16 @@ function eraseAddressBook(name) {
         });
 }
 
-
-function getAddress(userName) {
+function getAddress(name) {
     console.log('get address');
-    return Promise.resolve(AddressbookAction.getAddress(userName))
+    if (_.isNil(name)) {
+        return Addressbook.getAddresses(ownerAccount)
+            .then((addresses) => {
+                console.log(addresses);
+            });
+    }
+    return Addressbook.getAddress(ownerAccount, name)
         .then((address) => {
             console.log(address);
         });
 }
-
-

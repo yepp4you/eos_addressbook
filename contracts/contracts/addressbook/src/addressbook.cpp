@@ -7,13 +7,13 @@
 
 namespace eosio {
 
-void addressbook::upsert(name user, const std::string& first_name, const std::string& last_name, const std::string& street, const std::string& city) {
-   require_auth(user);
+void addressbook::upsert(name owner, name user, const std::string& first_name, const std::string& last_name, const std::string& street, const std::string& city) {
+   require_auth(owner);
 
-   address_index addresses(get_self(), get_first_receiver().value);
+   address_index addresses(get_self(), owner.value);
    auto iterator = addresses.find(user.value);
    if(iterator == addresses.end()) {
-      addresses.emplace(user, [&]( auto& row ) {
+      addresses.emplace(owner, [&]( auto& row ) {
          row.user = user;
          row.first_name = first_name;
          row.last_name = last_name;
@@ -21,7 +21,7 @@ void addressbook::upsert(name user, const std::string& first_name, const std::st
          row.city = city;
       });
    } else {
-      addresses.modify(iterator, user, [&]( auto& row ) {
+      addresses.modify(iterator, owner, [&]( auto& row ) {
          row.user = user;
          row.first_name = first_name;
          row.last_name = last_name;
@@ -31,10 +31,10 @@ void addressbook::upsert(name user, const std::string& first_name, const std::st
    }
 }
 
-void addressbook::erase(name user) {
-   require_auth(user);
+void addressbook::erase(name owner, name user) {
+   require_auth(owner);
 
-   address_index addresses(get_self(), get_first_receiver().value);
+   address_index addresses(get_self(), owner.value);
    auto iterator = addresses.find(user.value);
    check(iterator != addresses.end(), "Record does not exist");
    addresses.erase(iterator);

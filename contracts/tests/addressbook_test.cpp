@@ -46,14 +46,15 @@ public:
       return base_tester::push_action( std::move(act), uint64_t(signer));
    }
 
-   fc::variant get_person( account_name user)
+   fc::variant get_person(account_name owner, account_name user)
    {
-      vector<char> data = get_row_by_account( N(addressbook),  N(addressbook), N(people), user.value);
+      vector<char> data = get_row_by_account( N(addressbook), owner.value, N(contacts), user.value);
       return data.empty() ? fc::variant() : abi_ser.binary_to_variant( "person", data, abi_serializer_max_time );
    }
 
-   action_result upsert(name user, std::string first_name, std::string last_name, std::string street, std::string city) {
-      return push_action( user, N(upsert), mvo()
+   action_result upsert(name owner, name user, std::string first_name, std::string last_name, std::string street, std::string city) {
+      return push_action( owner, N(upsert), mvo()
+           ( "owner", owner)
            ( "user", user)
            ( "first_name", first_name)
            ( "last_name", last_name)
@@ -62,8 +63,9 @@ public:
       );
    }
 
-    action_result erase(name user) {
-      return push_action( user, N(erase), mvo()
+    action_result erase(name owner, name user) {
+      return push_action( owner, N(erase), mvo()
+           ( "owner", owner)
            ( "user", user)
       );
    }
@@ -75,15 +77,16 @@ BOOST_AUTO_TEST_SUITE(eosio_addressbook_tests)
 
 BOOST_FIXTURE_TEST_CASE( upsert_tests, addressbook_tester ) try {
 
-   upsert( N(alice), "alice", "kim", "kangnam", "seoul");
+   upsert( N(alice), "bob", "bob first", "kim last", "kangnam", "seoul");
    produce_blocks(1);
 
-   auto person_1 = get_person(N(alice));
+   auto person_1 = get_person(N(alice) ,N(bob));
    BOOST_TEST_MESSAGE(fc::json::to_pretty_string(person_1));
    REQUIRE_MATCHING_OBJECT( person_1, mvo()
-      ( "user", "alice")
-      ( "first_name", "alice")
-      ( "last_name", "kim")
+      ( "owner", "alice")
+      ( "user", "bob")
+      ( "first_name", "bob first")
+      ( "last_name", "kim last")
       ( "street", "kangnam")
       ( "city", "seoul")
    );
@@ -93,21 +96,22 @@ BOOST_FIXTURE_TEST_CASE( upsert_tests, addressbook_tester ) try {
 
 BOOST_FIXTURE_TEST_CASE( erase_tests, addressbook_tester ) try {
 
-   upsert( N(alice), "alice", "kim", "kangnam", "seoul");
+   upsert( N(alice), "bob", "bob first", "kim last", "kangnam", "seoul");
    produce_blocks(1);
 
-   auto person_1 = get_person(N(alice));
+   auto person_1 = get_person(N(alice), N(bob));
    BOOST_TEST_MESSAGE(fc::json::to_pretty_string(person_1));
    REQUIRE_MATCHING_OBJECT( person_1, mvo()
-      ( "user", "alice")
-      ( "first_name", "alice")
-      ( "last_name", "kim")
+      ( "owner", "alice")
+      ( "user", "bob")
+      ( "first_name", "bob first")
+      ( "last_name", "kim last")
       ( "street", "kangnam")
       ( "city", "seoul")
    );
 
-   erase( N(alice));
-   auto person_2 = get_person(N(alice));
+   erase( N(alice), N(bob));
+   auto person_2 = get_person(N(alice), N(bob));
    //BOOST_TEST_MESSAGE(fc::json::to_pretty_string(person_2));
    BOOST_REQUIRE_EQUAL(person_2.is_null(), true);
 

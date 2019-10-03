@@ -3,17 +3,28 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "startj": "NODE_ENV=jungle NODE_PATH=. node ./index",
-    "startd": "NODE_ENV=developer NODE_PATH=. node ./index"
+    "toolsj": "NODE_ENV=jungle NODE_PATH=. node ./tools/index",
+    "toolsd": "NODE_ENV=development NODE_PATH=. node ./tools/index",
+    "test": "NODE_ENV=test NODE_PATH=. mocha --recursive -R list -t 80000 --exit",
+    "startj": "NODE_ENV=jungle NODE_PATH=. node ./bin/www",
+    "startd": "NODE_ENV=development NODE_PATH=. node ./bin/www"
   },
   "dependencies": {
     "bluebird": "^3.5.5",
+    "chai": "^4.2.0",
     "config": "^3.1.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
     "eosjs": "^20.0.0",
+    "express": "^4.17.1",
     "lodash": "^4.17.11",
     "minimist": "^1.2.0",
+    "morgan": "~1.9.0",
     "node-fetch": "^2.6.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "supertest": "^4.0.2",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.2.1"
   },
   "devDependencies": {}
 }

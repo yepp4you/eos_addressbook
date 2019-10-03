@@ -8,6 +8,10 @@
             "base": "",
             "fields": [
                 {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
                     "name": "user",
                     "type": "name"
                 }
@@ -43,6 +47,10 @@
             "name": "upsert",
             "base": "",
             "fields": [
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
                 {
                     "name": "user",
                     "type": "name"
@@ -80,7 +88,7 @@
     ],
     "tables": [
         {
-            "name": "people",
+            "name": "contacts",
             "type": "person",
             "index_type": "i64",
             "key_names": [],

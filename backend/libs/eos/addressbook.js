@@ -1,6 +1,7 @@
 'use strict';
 
-const config = require('config'),
+const _ = require('lodash'),
+    config = require('config'),
     eosApi = require('external_apis/eos_api');
 
 const contractAccount = config.eosNode.contractAccount;
@@ -19,10 +20,18 @@ function erase(params, keyProvider, actor) {
     return eosApi.transact({actions : [action]}, options);
 }
 
-async function getAddress(userName) {
-    const result = await eosApi.getTableRows(contractAccount, contractAccount, 'people', 'user', userName, 1, 'name');
-    return result;
+async function getAddress(owner, name) {
+    const result = await eosApi.getTableRows(contractAccount, owner, 'contacts', 'user', name, 1, 'name');
+    if (!_.isEmpty(result.rows)) {
+        return result.rows[0];
+    }
+    return {};
 }
 
-module.exports = exports = {upsert, erase, getAddress};
+async function getAddresses(owner) {
+    const result = await eosApi.getTableRows(contractAccount, owner, 'contacts', 'user', null, 300, 'name');
+    return result.rows;
+}
+
+module.exports = exports = {upsert, erase, getAddress, getAddresses};
 

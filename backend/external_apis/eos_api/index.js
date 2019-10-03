@@ -36,6 +36,7 @@ async function deployContract(account, contractPath, authorizations, options) {
         async function(wasm, abi) {
             const retCode = await setcode(account, 0, 0, wasm, authorizations, options)
                 .catch((err) => {
+                    console.log(err);
                     if (err.error && err.error.code === 3160008) { //Contract is already running this version of code
                         return err.code;
                     } else {

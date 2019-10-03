@@ -1,12 +1,12 @@
 {
     "timezone" : "+00:00",
     "eosNode" : {    // server to server
-        "contractAccount" : "testaddr111a",
-        "ownerAccount" : "testaddr111a",
+        "contractAccount" : "committeeaab",
+        "ownerAccount" : "committeeaab",
         "systemAccount" : "eosio",
         "symbol" : "EOS",
-        "eosioPriKey" : "",
-        "chainId" : "e70aaab8997e1dfce58fbfac80cbbb8fecec7b99cf982a9444273cbc64c41473",
+        "eosioPriKey" : "5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3",
+        "chainId" : "0bbced62fb95a76f2df4cba8d941f2adc30bbf86e5328abbcab7d3f372ecaaa5",
         "endpoints" : ["http://jungle2.cryptolions.io"]
     },
     "webLog" : {
@@ -28,6 +28,6 @@
         "maxFiles": "15d"
     },
     "cors" : {
-        "whitelist" : ["::ffff:127.0.0.1", "http://localhost:3000", "http://localhost:3001", "http://localhost:4000", "http://localhost:14608"]
+        "whitelist" : "*" // ["*"]
     },
 }

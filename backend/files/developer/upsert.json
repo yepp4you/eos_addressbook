@@ -1,5 +1,5 @@
 [{
-    "user" : "committeeaab", "first_name": "Alice", "last_name" : "Williams", "street": "402, Hakdong-ro, Gangnam-gu", "city" : "SEOUL", "aa" : "1111"
+   "owner" : "", "user" : "committeeaab", "first_name": "Alice", "last_name" : "Williams", "street": "402, Hakdong-ro, Gangnam-gu", "city" : "SEOUL", "aa" : "1111"
 }, {
-    "user" : "revieweraaaa", "first_name": "Amy", "last_name" : "Brown", "street": "410, Hakdong-ro, Gangnam-gu", "city" : "SEOUL"
+   "owner" : "", "user" : "revieweraaaa", "first_name": "Amy", "last_name" : "Brown", "street": "410, Hakdong-ro, Gangnam-gu", "city" : "SEOUL"
 }]

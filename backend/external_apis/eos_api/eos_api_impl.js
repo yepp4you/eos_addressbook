@@ -85,7 +85,7 @@ class EosApi {
             table : table,
             table_key : tableKey,
             lower_bound : lowerBound,
-            // upper_bound : lowerBound,
+            upper_bound : lowerBound,
             // upper_bound: {type : "string", default: '-1'},
             limit : limit,
             key_type : keyType,

@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 15
+    },
+    "auditLog": "log/.48171e638c9759beacd80263eb86515443cb892e-audit.json",
+    "files": [
+        {
+            "date": 1570091527831,
+            "name": "log/eos_err.log.2019-10-03",
+            "hash": "777ff782a14f54a22d344e5c0b358f48"
+        }
+    ]
+}
