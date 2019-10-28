@@ -1,0 +1,17 @@
+{
+    "apps" : [{
+        "script"    : "bin/www",
+        "instances" : 1,
+        "name"      : "ADDRESS-JUNGLE-API",
+        "instance_var" : "INSTANCE_ID",
+        "max_memory_restart" : "100M",
+        "exec_mode" : "cluster_mode",
+        "env": {
+            "COMMON_VARIABLE": "true",
+            "PORT" : 3000,
+            "NODE_ENV": "jungle",
+            "NODE_PATH" : ".",
+            "NODE_APP_NAME" : "ADDRESS-JUNGLE-API"
+        }
+    }]
+}
