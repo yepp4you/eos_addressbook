@@ -28,6 +28,6 @@
         "maxFiles": "15d"
     },
     "cors" : {
-        "whitelist" : ["::ffff:127.0.0.1", "http://localhost:3000", "http://localhost:3001", "http://localhost:4000", "http://localhost:14608"]
-    },
+        "whitelist" : "*" 
+    }
 }
